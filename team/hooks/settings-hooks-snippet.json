@@ -1,0 +1,49 @@
+{
+  "_comment": [
+    "Фрагмент для .claude/settings.json нового проекта — секция hooks.",
+    "1) Bash-хуки: гейт сборки перед пушем + штамп после сборки (пара).",
+    "2) UserPromptSubmit: подсказка feedback_ask_leads — если запрос похож на",
+    "   командный/развилку, оркестратору напоминают делегировать лидам.",
+    "   ВАЖНО: regex держать УЗКИМ и расширять ТОЛЬКО по реальным фейлам",
+    "   маршрутизации. На OCS широкое слово «токен» в таком regex уводило",
+    "   вопросы про JWT к дизайн-лиду — ложная маршрутизация хуже её отсутствия.",
+    "JSON не поддерживает комментарии — ключи _comment удалить при вставке."
+  ],
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "bash",
+            "command": "if grep -qiE 'обсудите|посоветуйтесь|с командой|с лидами|спроси(те)? лидов|решите вместе|всей командой'; then printf '%s' '{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"Похоже на запрос к команде/развилку: рассмотри делегирование лидам (DL/TL/PM) по правилу feedback_ask_leads; если это простая задача — действуй сам и отметь это.\"}}'; fi"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "bash",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/pre-push-build-gate.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "bash",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/post-build-stamp.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
