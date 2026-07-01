@@ -1,0 +1,25 @@
+{
+  "date": "2026-06-30",
+  "project": "/Users/denis/Desktop/vault/projects/ProductOS",
+  "git": {
+    "commits_today": 0,
+    "reverts_today": 0,
+    "head": "a8d3271"
+  },
+  "exams": {
+    "pass": 13,
+    "partial": 2,
+    "fail": 0,
+    "total": ,
+    "latest_scorecard": "SCORECARD-2026-06-29.md"
+  },
+  "debts": {
+    "total": 0,
+    "open": 0,
+    "closed": 0
+  },
+  "meta": {
+    "digests_total": 5,
+    "team_roles": 16
+  }
+}
