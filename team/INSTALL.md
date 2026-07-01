@@ -10,6 +10,7 @@
 ```
 mkdir -p <проект>/.claude/team
 cp core/engineering-discipline.md <проект>/.claude/team/
+cp core/ORCHESTRATOR.md <проект>/.claude/team/
 ```
 
 Файл project-agnostic — копируется КАК ЕСТЬ, без правок. Проектная специфика
