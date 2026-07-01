@@ -28,15 +28,24 @@ EXAMS_PASS=0
 EXAMS_PARTIAL=0
 EXAMS_FAIL=0
 EXAMS_TOTAL=0
-LATEST_SCORECARD=$(ls -t "$TEAM"/evals/SCORECARD-*.md 2>/dev/null | head -1 || echo "")
+# Только экзаменационные табели SCORECARD-ГГГГ-ММ-ДД.md (продуктовые и прочие —
+# другой формат, в них нет итога экзаменов). Свежесть — по дате в ИМЕНИ файла,
+# не по mtime: правка старого файла не должна делать его «последним».
+LATEST_SCORECARD=$(ls "$TEAM"/evals/SCORECARD-[0-9]*.md 2>/dev/null | sort | tail -1 || echo "")
 if [ -n "$LATEST_SCORECARD" ] && [ -f "$LATEST_SCORECARD" ]; then
-    # Парсим итоговую строку вида "13 PASS · 2 PARTIAL · 0 FAIL из 15"
-    SCORE_LINE=$(grep -o '[0-9]* PASS.*FAIL.*[0-9]*' "$LATEST_SCORECARD" | head -1 || echo "")
+    # Итоговая строка вида "15 PASS · 0 PARTIAL · 0 FAIL". Строки со ссылкой на
+    # прошлый табель («Предыдущий») отбрасываем; из оставшихся берём последнюю.
+    SCORE_LINE=$(grep '[0-9][0-9]* PASS.*PARTIAL.*FAIL' "$LATEST_SCORECARD" | grep -v 'Предыдущ' | tail -1 || echo "")
     if [ -n "$SCORE_LINE" ]; then
-        EXAMS_PASS=$(echo "$SCORE_LINE" | grep -o '[0-9]*' | sed -n '1p' || echo 0)
-        EXAMS_PARTIAL=$(echo "$SCORE_LINE" | grep -o '[0-9]*' | sed -n '2p' || echo 0)
-        EXAMS_FAIL=$(echo "$SCORE_LINE" | grep -o '[0-9]*' | sed -n '3p' || echo 0)
-        EXAMS_TOTAL=$(echo "$SCORE_LINE" | grep -o '[0-9]*' | sed -n '4p' || echo 0)
+        EXAMS_PASS=$(echo "$SCORE_LINE" | grep -o '[0-9][0-9]*' | sed -n '1p')
+        EXAMS_PARTIAL=$(echo "$SCORE_LINE" | grep -o '[0-9][0-9]*' | sed -n '2p')
+        EXAMS_FAIL=$(echo "$SCORE_LINE" | grep -o '[0-9][0-9]*' | sed -n '3p')
+        EXAMS_TOTAL=$(echo "$SCORE_LINE" | grep -o '[0-9][0-9]*' | sed -n '4p')
+        EXAMS_PASS=${EXAMS_PASS:-0}
+        EXAMS_PARTIAL=${EXAMS_PARTIAL:-0}
+        EXAMS_FAIL=${EXAMS_FAIL:-0}
+        # Если явного «из N» нет — итог считаем суммой
+        EXAMS_TOTAL=${EXAMS_TOTAL:-$((EXAMS_PASS + EXAMS_PARTIAL + EXAMS_FAIL))}
     fi
 fi
 
