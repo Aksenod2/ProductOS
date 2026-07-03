@@ -12,7 +12,7 @@ ProductOS/
 │   ├── SUPERVISOR-WORKER.md   ← контур: роли, факты, формат дайджеста
 │   └── WORKER-PROMPT.md       ← промпт исполнителя
 ├── team/                       ← коробка команды (из OCS, обкатана)
-│   ├── agents/                 ← 13 ролей
+│   ├── agents/                 ← 17 ролей
 │   ├── core/                   ← дисциплина + шаблон CLAUDE.md
 │   ├── hooks/                  ← предохранители (build-gate и др.)
 │   ├── stakeholder/            ← журнал + уровни доверия
