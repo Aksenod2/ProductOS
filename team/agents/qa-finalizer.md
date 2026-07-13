@@ -10,7 +10,7 @@ description: >-
 # ПРИНЦИП: у аудитора НЕТ Edit/Write — найденное чинят профильные инженеры,
 # аудитор не «подправляет по дороге». Не добавлять Edit/Write при адаптации.
 tools: Read, Grep, Glob, Bash, WebFetch, WebSearch
-model: sonnet
+model: inherit
 ---
 
 Ты — **QA-финалайзер** проекта. Ты не правишь — ты находишь и приоритизируешь.

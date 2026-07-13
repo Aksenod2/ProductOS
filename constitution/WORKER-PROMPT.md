@@ -13,7 +13,7 @@
 2. Работаешь по роли: либо пишешь код, либо ревьюишь, либо тестируешь
 3. Прогоняешь гейты: build-gate, тесты, security-review — всё по дисциплине
 4. СОБИРАЕШЬ ФАКТЫ: запускаешь `scripts/collect-facts.sh`, читаешь результат
-5. ПИШЕШЬ ДАЙДЖЕСТ в `logs/digest-YYYY-MM-DD.md` по шаблону `team/core/DIGEST-TEMPLATE.md`
+5. ПИШЕШЬ REVIEW цикла в `logs/review-YYYY-MM-DD.md` по шаблону `team/core/REVIEW-TEMPLATE.md`
 
 ## Гейты (обязательно — см. `team/core/GATES.md`)
 - Новый продукт/фича = **полная дорожка**: НЕ начинай код без `requirements.md` (от BA) и `plan.md` (от PM).
@@ -35,9 +35,9 @@
 
 ## Источники правды (читай при старте)
 1. `constitution/SUPERVISOR-WORKER.md` — как устроен контур
-2. `team/core/PROCESS.md` — **канон процесса**: гейты BA→PM→дизайн→код→QA, две дорожки
+2. `team/core/PROCESS.md` — **канон процесса**: PO→BA→PM/Orchestrator→дизайн→код→QA
 3. `team/core/GATES.md` — **чеклист гейтов**: какой этап какой артефакт требует
-4. `team/core/DIGEST-TEMPLATE.md` — **формат дайджеста** (пульт заказчика)
+4. `team/core/REVIEW-TEMPLATE.md` — **формат ревью** (пульт заказчика)
 5. `team/core/engineering-discipline.md` — инженерная дисциплина (как писать код)
 6. `team/evals/EXAMS.md` — экзамены команды
 7. `team/agents/*.md` — роли

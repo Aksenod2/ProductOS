@@ -1,11 +1,13 @@
 #!/bin/bash
 # collect-facts.sh — собирает объективные метрики, которые исполнитель не может подделать
 # Запускается ПЕРЕД агентом, результат инжектится в промпт как контекст
-# Аргумент: $1 = путь к проекту (workdir), по умолчанию ProductOS
+# Аргумент: $1 = путь к проекту (workdir), по умолчанию корень этого git-репозитория
 
 set -euo pipefail
 
-PROJECT="${1:-/Users/denis/Desktop/vault/projects/ProductOS}"
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+DEFAULT_PROJECT=$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null || dirname "$SCRIPT_DIR")
+PROJECT="${1:-$DEFAULT_PROJECT}"
 TEAM="$PROJECT/team"
 LOGS="$PROJECT/logs"
 TODAY=$(date +%Y-%m-%d)
@@ -59,8 +61,8 @@ if [ -f "$PROJECT/docs/DEBTS.md" ]; then
     DEBTS_CLOSED=$(grep -c '✅' "$PROJECT/docs/DEBTS.md" 2>/dev/null || echo 0)
 fi
 
-# --- Дайджесты: сколько уже есть ---
-DIGEST_COUNT=$(ls "$LOGS"/digest-*.md 2>/dev/null | wc -l | tr -d ' ' || echo 0)
+# --- REVIEW циклов: сколько уже есть ---
+REVIEW_COUNT=$(ls "$LOGS"/review-*.md 2>/dev/null | wc -l | tr -d ' ' || echo 0)
 
 # --- Вывод JSON ---
 cat > "$FACTS_FILE" <<EOF
@@ -85,7 +87,7 @@ cat > "$FACTS_FILE" <<EOF
     "closed": $DEBTS_CLOSED
   },
   "meta": {
-    "digests_total": $DIGEST_COUNT,
+    "reviews_total": $REVIEW_COUNT,
     "team_roles": $(ls "$TEAM"/agents/*.md 2>/dev/null | wc -l | tr -d ' ' || echo 0)
   }
 }

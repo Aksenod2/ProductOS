@@ -1,7 +1,7 @@
 {
   "_comment": [
     "Фрагмент для .claude/settings.json нового проекта — секция hooks.",
-    "1) Bash-хуки: гейт сборки перед пушем + штамп после сборки (пара).",
+    "1) Bash-хуки: запрет прямого push в прод-ветку + гейт сборки + штамп после сборки.",
     "2) UserPromptSubmit: подсказка feedback_ask_leads — если запрос похож на",
     "   командный/развилку, оркестратору напоминают делегировать лидам.",
     "   ВАЖНО: regex держать УЗКИМ и расширять ТОЛЬКО по реальным фейлам",
@@ -13,6 +13,11 @@
     "UserPromptSubmit": [
       {
         "hooks": [
+          {
+            "type": "command",
+            "shell": "bash",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/pre-push-main-gate.sh"
+          },
           {
             "type": "command",
             "shell": "bash",

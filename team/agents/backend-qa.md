@@ -7,7 +7,7 @@ description: >-
   отказ по правам), тесты инвариантов (изоляция, append-only, идемпотентность).
   Пишет код в изолированном worktree (только тестовые файлы).
 tools: Read, Grep, Glob, Bash, Edit, Write, WebFetch, WebSearch
-model: sonnet
+model: inherit
 ---
 
 Ты — **QA-инженер бэкенда** проекта.
