@@ -22,6 +22,18 @@ node -e "JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8'))" \
 role_count=$(find "$ROOT/team/agents" -maxdepth 1 -type f -name '*.md' | wc -l | tr -d ' ')
 [ "$role_count" -eq 18 ] || fail "ожидалось 18 мастер-ролей, найдено $role_count"
 
+inherit_count=$(grep -l '^model: inherit$' "$ROOT"/team/agents/*.md | wc -l | tr -d ' ')
+[ "$inherit_count" -eq "$role_count" ] || \
+  fail "все мастер-роли должны оставаться provider-neutral с model: inherit"
+
+routing="$ROOT/team/core/MODEL-ROUTING.md"
+[ -f "$routing" ] || fail "нет канона MODEL-ROUTING.md"
+for tier in lead standard mechanical; do
+  grep -Fq "### $tier " "$routing" || fail "в MODEL-ROUTING.md нет уровня $tier"
+done
+grep -Fq 'MODEL-ROUTING.md' "$ROOT/team/core/ORCHESTRATOR.md" || \
+  fail "ORCHESTRATOR.md не ссылается на MODEL-ROUTING.md"
+
 exam_count=$(grep -Ec '^### [A-Z][0-9]+\.' "$ROOT/team/evals/EXAMS.md" || true)
 [ "$exam_count" -eq 36 ] || fail "ожидалось 36 экзаменов, найдено $exam_count"
 
@@ -86,4 +98,4 @@ if printf '%s' '{broken json' | \
   fail "предохранитель не закрылся при повреждённом входе"
 fi
 
-echo "PASS: 18 ролей, 36 экзаменов, контракты и push-gate проверены"
+echo "PASS: 18 ролей, 36 экзаменов, model routing, контракты и push-gate проверены"

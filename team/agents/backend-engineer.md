@@ -13,8 +13,8 @@ model: inherit
 <!-- На крупном бэкенде эта роль РАСЩЕПЛЯЕТСЯ на четырёх инженеров с
      непересекающимися зонами (так было на OCS, см. .claude/agents/ там):
      - api-engineer  — роуты и плагины (кроме auth)
-     - auth-engineer — register/login/me, JWT, RBAC (model: opus — критично)
-     - db-engineer   — схема, миграции, RLS-политики, seed (model: opus — критично)
+     - auth-engineer — register/login/me, JWT, RBAC (уровень lead — критично)
+     - db-engineer   — схема, миграции, RLS-политики, seed (уровень lead — критично)
      - jobs-engineer — cron/фоновые задачи (часто на привилегированном коннекте)
      Расщепление даёт параллельность без конфликтов и точечную ответственность. -->
 
