@@ -20,7 +20,7 @@ node -e "JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8'))" \
   "$ROOT/team/hooks/settings-hooks-snippet.json"
 
 role_count=$(find "$ROOT/team/agents" -maxdepth 1 -type f -name '*.md' | wc -l | tr -d ' ')
-[ "$role_count" -eq 20 ] || fail "ожидалось 20 мастер-ролей, найдено $role_count"
+[ "$role_count" -eq 21 ] || fail "ожидалась 21 мастер-роль, найдено $role_count"
 
 inherit_count=$(grep -l '^model: inherit$' "$ROOT"/team/agents/*.md | wc -l | tr -d ' ')
 [ "$inherit_count" -eq "$role_count" ] || \
@@ -287,4 +287,4 @@ if printf '%s' '{broken json' | \
   fail "предохранитель не закрылся при повреждённом входе"
 fi
 
-echo "PASS: 20 ролей, 36 проверенных экзаменов + 4 экспериментальных кандидата, model routing, отдел проектирования, контракты и push-gate проверены"
+echo "PASS: 21 роль, 36 проверенных экзаменов + 4 экспериментальных кандидата, model routing, отдел проектирования, контракты и push-gate проверены"

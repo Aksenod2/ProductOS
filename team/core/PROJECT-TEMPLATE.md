@@ -102,7 +102,7 @@
 
 ## [O] Процесс проекта
 
-Стандартный процесс ProductOS: PO → BA → Delivery PM / Orchestrator → дизайн → код → QA
+Стандартный процесс ProductOS: PO → BA → Delivery PM / Orchestrator → концепция при необходимости → Design System → код → QA
 (см. `team/core/PROCESS.md`).
 
 Dream Team: версия `{{DREAM_TEAM_VERSION}}`, commit `{{DREAM_TEAM_COMMIT}}`.

@@ -62,7 +62,8 @@ ProductOS. После утверждения правится только ма�
 - **Минимальный набор для любого проекта**: product-owner, delivery-pm-orchestrator,
   tech-lead, security-reviewer,
   release-qa + исполнители под стек (frontend-engineer и/или backend-engineer).
-- **Фронт+бэк проект**: добавить system-analyst, business-analyst, design-lead,
+- **Фронт+бэк проект**: добавить system-analyst, business-analyst, concept-designer
+  (только когда нужен новый визуальный характер), design-lead,
   frontend-integrator, backend-qa, qa-finalizer, devops-engineer.
 - **Крупный бэкенд**: backend-engineer расщепляется на api/auth/db/jobs-инженеров
   (см. примечание в `agents/backend-engineer.md` и оригиналы в OCS).
@@ -75,6 +76,21 @@ ProductOS. После утверждения правится только ма�
 
 Проверка: свежий агент выбранной роли называет мастер-файл ProductOS и корректно
 пересказывает ограничения текущего проекта из `AGENTS.md`.
+
+### Дизайн-зависимости
+
+`concept-designer` использует доступный в среде skill `frontend-design`.
+`design-lead` использует внешний skill UI/UX Pro Max. На машине с Codex его
+устанавливают в корне ProductOS по официальному CLI:
+
+```bash
+npm install -g ui-ux-pro-max-cli
+uipro init --ai codex
+```
+
+Сгенерированная папка `.codex/skills/` — локальная runtime-зависимость, а не часть
+мастер-ролей Dream Team; её не нужно коммитить вместе с командой. После установки
+Codex перезапускают и проверяют, что `ui-ux-pro-max` виден в списке skills.
 
 ## Шаг 3. Адаптировать хуки (автоматические предохранители)
 

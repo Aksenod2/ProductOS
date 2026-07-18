@@ -34,7 +34,8 @@
 | **Product Owner** | сырой запрос/источники | Папка эпика | Заказчик |
 | **BA** | TASK.md со story/DoD | Папка эпика | Product Owner |
 | **Delivery PM / Orchestrator** | TASK.md + requirements.md | Папка эпика | Product Owner + BA |
-| **Design Lead** | requirements.md **+** plan.md + MANIFEST.md | Папка эпика | BA + Delivery PM / Orchestrator |
+| **Concept Designer** *(если нужен новый визуальный характер)* | requirements.md **+** plan.md + MANIFEST.md | Папка эпика | BA + Delivery PM / Orchestrator |
+| **Design Lead** | requirements.md **+** plan.md + MANIFEST.md **+** принятый concept-brief.md, если включён Concept Designer | Папка эпика | BA + PM + Concept Designer / владелец |
 | **Frontend / Build** | requirements.md **+** plan.md **+** design-spec.md | Папка проекта | BA + PM + Design |
 | **QA** | requirements.md (критерии приёмки) **+** готовый артефакт (index.html / код) | Папка проекта | BA + Build |
 | **REVIEW** | Результат QA (все AC пройдены) | Папка эпика | Оркестратор собирает, QA подтверждает факты |
@@ -53,6 +54,7 @@
 | Переход | Жёстко (блок) | Мягко (подсказка) |
 |---|---|---|
 | **BA → PM/Orchestrator** | Для нового продукта/ключевой сущности есть три раздела: `Сценарий начала работы с нуля`, `Жизненный цикл сущностей`, `Решения, требующие владельца`. Каждая отсутствующая операция имеет `не применимо` + обоснование или ссылку на решение владельца. `требует решения владельца` = блок. | Все сценарии в Given/When/Then? Есть матрица «узел × вес» и названы 2–3 несущие оси, каждая — как механизм, а не подпись (`engineering-discipline.md` §9)? |
+| **Concept → Design Lead** | В `concept-brief.md` одно направление и зафиксирован источник решения владельца | Концепция связана со сценариями и даёт проверяемые визуальные инварианты? |
 | **Design → Frontend** | Нет слов «рекомендуется», «на выбор», «можно использовать» в спеке | Все AC покрыты визуально? Есть сводная таблица AC↔компонент? |
 | **Frontend → QA** | — | Есть матрица состояний по каждому AC? QA сверяет с BRIEF/замыслом, не только со спекой — есть класс «занижено против несущей конструкции» (`engineering-discipline.md` §9)? |
 
