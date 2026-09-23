@@ -35,7 +35,7 @@
 
 ## Источники правды (читай при старте)
 1. `constitution/SUPERVISOR-WORKER.md` — как устроен контур
-2. `team/core/PROCESS.md` — **канон процесса**: PO→BA→PM/Orchestrator→дизайн→код→QA
+2. `team/core/PROCESS.md` — **канон процесса**: Process Owner→PO→BA/AS-IS→PM/Orchestrator→концепт/owner gate→дизайн→код→QA
 3. `team/core/GATES.md` — **чеклист гейтов**: какой этап какой артефакт требует
 4. `team/core/REVIEW-TEMPLATE.md` — **формат ревью** (пульт заказчика)
 5. `team/core/engineering-discipline.md` — инженерная дисциплина (как писать код)
