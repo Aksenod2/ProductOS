@@ -102,7 +102,14 @@
 
 ## [O] Процесс проекта
 
-Стандартный процесс ProductOS: PO → BA → Delivery PM / Orchestrator → дизайн → код → QA
+Согласованная карта процесса: `<доступный адрес/ID>`, ревизия `<версия>`,
+источник согласования `<координата>`. Для работы по ней сначала читать
+`team/core/START-HERE.md` мастер-команды. Недоступная карта или конфликт с каноном
+останавливает узел; процесс исправлений не заменяется полной цепочкой ниже.
+
+Стандартный процесс ProductOS: Process Owner → PO → BA/AS-IS → Delivery PM /
+Orchestrator → концепт и owner gate → Design System → код → QA. Новый или
+существенно изменённый Atomic Design organism/template концепт не пропускает.
 (см. `team/core/PROCESS.md`).
 
 Dream Team: версия `{{DREAM_TEAM_VERSION}}`, commit `{{DREAM_TEAM_COMMIT}}`.
